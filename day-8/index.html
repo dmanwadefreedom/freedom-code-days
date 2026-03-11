@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day 8 — Communication Styles | Freedom Code</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0a0a0a;
+  color: #e8e0d4;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 26.67%; /* 8/30 */
+  height: 3px;
+  background: linear-gradient(90deg, #c9a96e, #e8d5a3);
+  z-index: 100;
+  transition: width 0.3s;
+}
+
+.header {
+  text-align: center;
+  padding: 60px 20px 40px;
+  border-bottom: 1px solid rgba(201,169,110,0.15);
+}
+
+.phase-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #c9a96e;
+  background: rgba(201,169,110,0.1);
+  border: 1px solid rgba(201,169,110,0.25);
+  padding: 6px 18px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.day-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.day-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 6vw, 52px);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.day-subtitle {
+  font-size: 16px;
+  color: #999;
+  max-width: 500px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 50px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.section:last-child { border-bottom: none; }
+
+.section-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.section p {
+  font-size: 16px;
+  color: #bbb;
+  margin-bottom: 16px;
+  font-weight: 300;
+}
+
+.section p strong {
+  color: #e8e0d4;
+  font-weight: 500;
+}
+
+.video-embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  margin: 24px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #111;
+}
+
+.video-embed iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+.action-card {
+  background: rgba(201,169,110,0.06);
+  border: 1px solid rgba(201,169,110,0.15);
+  border-radius: 12px;
+  padding: 28px;
+  margin: 20px 0;
+}
+
+.action-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: #c9a96e;
+  margin-bottom: 12px;
+}
+
+.action-card p {
+  color: #bbb;
+  font-size: 15px;
+  margin-bottom: 0;
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 15px;
+  color: #bbb;
+}
+
+.checklist li:last-child { border-bottom: none; }
+
+.check-box {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  border: 2px solid rgba(201,169,110,0.4);
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 2px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-box.checked {
+  background: #c9a96e;
+  border-color: #c9a96e;
+}
+
+.check-box.checked::after {
+  content: '\2713';
+  color: #0a0a0a;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.reflection-card {
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  padding: 28px;
+  margin: 20px 0;
+}
+
+.reflection-card ol {
+  padding-left: 20px;
+  color: #bbb;
+}
+
+.reflection-card ol li {
+  padding: 8px 0;
+  font-size: 16px;
+  font-style: italic;
+}
+
+.btn-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(201,169,110,0.12);
+  border: 1px solid rgba(201,169,110,0.3);
+  color: #c9a96e;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  margin-top: 10px;
+}
+
+.btn-play:hover {
+  background: rgba(201,169,110,0.2);
+  border-color: rgba(201,169,110,0.5);
+}
+
+.quote-block {
+  border-left: 3px solid #c9a96e;
+  padding: 20px 24px;
+  margin: 24px 0;
+  background: rgba(201,169,110,0.04);
+  border-radius: 0 8px 8px 0;
+}
+
+.quote-block p {
+  font-style: italic;
+  color: #c9a96e;
+  font-size: 17px;
+  margin-bottom: 0;
+}
+
+.footer {
+  text-align: center;
+  padding: 50px 20px 80px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer p {
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.footer a {
+  color: #c9a96e;
+  text-decoration: none;
+}
+
+.nav-bottom {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 30px 20px 0;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #c9a96e, #a8893e);
+  color: #0a0a0a;
+  padding: 14px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.nav-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(201,169,110,0.3);
+}
+
+.nav-btn.secondary {
+  background: rgba(201,169,110,0.12);
+  border: 1px solid rgba(201,169,110,0.3);
+  color: #c9a96e;
+}
+
+.nav-btn.secondary:hover {
+  background: rgba(201,169,110,0.2);
+}
+
+.duration-tag {
+  display: inline-block;
+  font-size: 12px;
+  color: #888;
+  background: rgba(255,255,255,0.05);
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-left: 8px;
+}
+
+@media (max-width: 600px) {
+  .header { padding: 50px 16px 30px; }
+  .section { padding: 36px 0; }
+  .action-card, .reflection-card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"></div>
+
+<div class="header">
+  <div class="phase-tag">Phase 2 — Deconstruct</div>
+  <div class="day-number">Day 8 of 30</div>
+  <h1 class="day-title">Communication Styles</h1>
+  <p class="day-subtitle">Tear down the old programming. Rewire the brain. Educate the mind.</p>
+</div>
+
+<div class="container">
+
+  <!-- MORNING PROTOCOL -->
+  <div class="section">
+    <div class="section-label">Morning Protocol</div>
+    <div class="section-title">Wim Hof Breathwork + Cold Shower <span class="duration-tag">10 min</span></div>
+    <p>Before you check your phone. Before coffee. Before anything.</p>
+    <p><strong>Breathwork (5 min):</strong> Sit up straight. Take 30 deep breaths — inhale fully through the nose, exhale through the mouth. On the last exhale, hold your breath as long as you can. Inhale deeply, hold 15 seconds. That's one round. Do 3 rounds.</p>
+    <p><strong>Cold Shower (30 seconds):</strong> At the end of your shower, turn the water to cold. Stay in for 30 seconds. Breathe through it. This activates your vagus nerve and resets your nervous system.</p>
+  </div>
+
+  <!-- DAILY READ -->
+  <div class="section">
+    <div class="section-label">Daily Read</div>
+    <div class="section-title">The Gut-Brain Axis <span class="duration-tag">5 min</span></div>
+
+    <p>95% of your serotonin is made in your gut. Not your brain. <strong>Your gut.</strong></p>
+
+    <p>Processed food, sugar, alcohol, and antibiotics destroy gut bacteria. Destroyed gut means anxiety, depression, brain fog, poor sleep.</p>
+
+    <p>You can't meditate your way out of a diet that's poisoning your nervous system.</p>
+
+    <p><strong>Healing starts in the kitchen.</strong></p>
+
+    <div class="quote-block">
+      <p>"All disease begins in the gut." — Hippocrates</p>
+    </div>
+  </div>
+
+  <!-- DAILY ACTION -->
+  <div class="section">
+    <div class="section-label">Daily Action</div>
+    <div class="section-title">Eliminate One Thing <span class="duration-tag">24 hours</span></div>
+
+    <div class="action-card">
+      <h4>Your Assignment</h4>
+      <p>Eliminate ONE thing today: sugar, alcohol, processed food, or social media. Just one. For 24 hours.</p>
+    </div>
+
+    <ul class="checklist">
+      <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>Choose one thing to eliminate for 24 hours</li>
+      <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>Track cravings and urges throughout the day</li>
+      <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>Notice what you reach for as a replacement</li>
+      <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>Write about your attachment style (Secure, Anxious, Avoidant, Disorganized)</li>
+    </ul>
+  </div>
+
+  <!-- VIDEO -->
+  <div class="section">
+    <div class="section-label">Today's Session</div>
+    <div class="section-title">Yoga Couple Day 8 — Communication and Attachment Styles <span class="duration-tag">30 min</span></div>
+    <p>Today's session explores communication patterns and how your attachment style shapes the way you connect with others.</p>
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/jwBtOzRtUas" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- EVENING REFLECTION -->
+  <div class="section">
+    <div class="section-label">Evening Reflection</div>
+    <div class="section-title">Before You Sleep <span class="duration-tag">5 min</span></div>
+    <p>No screens after this. Grab your journal. Answer these 3 questions honestly.</p>
+
+    <div class="reflection-card">
+      <ol>
+        <li>What did I eliminate? How did it feel?</li>
+        <li>What did I reach for as a replacement?</li>
+        <li>What's my attachment style? (Secure, Anxious, Avoidant, Disorganized)</li>
+      </ol>
+    </div>
+
+    <p>Write it down. Don't just think about it. <strong>Ink on paper changes the brain differently than thoughts in your head.</strong></p>
+  </div>
+
+  <!-- TOMORROW TEASER -->
+  <div class="section" style="text-align:center;">
+    <p style="color:#666; font-size:14px; margin-bottom:8px;">TOMORROW</p>
+    <p style="font-family:'Playfair Display',serif; font-size:22px; color:#fff; margin-bottom:8px;">Day 9 — Masculine & Feminine Energy</p>
+    <p style="color:#888; font-size:14px;">What's calcifying your pineal gland — and why it matters.</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="nav-bottom">
+    <a href="../day-7/index.html" class="nav-btn secondary">&#8592; Day 7</a>
+    <a href="../day-9/index.html" class="nav-btn">Day 9 &#8594;</a>
+  </div>
+  <br>
+  <p>Freedom Code — 30-Day Transformation</p>
+  <p style="color:#444; font-size:12px;">Built by <a href="https://thedylanewing.com">Dylan Ewing</a></p>
+  <p style="color:#555; font-size:12px; margin-top:16px;">Questions? Reply to the email that brought you here.</p>
+</div>
+
+</body>
+</html>

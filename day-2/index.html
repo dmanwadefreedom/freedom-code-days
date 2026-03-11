@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day 2 — Taking Inventory | Freedom Code</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0a0a0a;
+  color: #e8e0d4;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6.67%; /* 2/30 */
+  height: 3px;
+  background: linear-gradient(90deg, #c9a96e, #e8d5a3);
+  z-index: 100;
+  transition: width 0.3s;
+}
+
+.header {
+  text-align: center;
+  padding: 60px 20px 40px;
+  border-bottom: 1px solid rgba(201,169,110,0.15);
+}
+
+.phase-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #c9a96e;
+  background: rgba(201,169,110,0.1);
+  border: 1px solid rgba(201,169,110,0.25);
+  padding: 6px 18px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.day-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.day-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 6vw, 52px);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.day-subtitle {
+  font-size: 16px;
+  color: #999;
+  max-width: 500px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 50px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.section:last-child { border-bottom: none; }
+
+.section-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.section p {
+  font-size: 16px;
+  color: #bbb;
+  margin-bottom: 16px;
+  font-weight: 300;
+}
+
+.section p strong {
+  color: #e8e0d4;
+  font-weight: 500;
+}
+
+.video-embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  margin: 24px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #111;
+}
+
+.video-embed iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+.action-card {
+  background: rgba(201,169,110,0.06);
+  border: 1px solid rgba(201,169,110,0.15);
+  border-radius: 12px;
+  padding: 28px;
+  margin: 20px 0;
+}
+
+.action-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: #c9a96e;
+  margin-bottom: 12px;
+}
+
+.action-card p {
+  color: #bbb;
+  font-size: 15px;
+  margin-bottom: 0;
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 15px;
+  color: #bbb;
+}
+
+.checklist li:last-child { border-bottom: none; }
+
+.check-box {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  border: 2px solid rgba(201,169,110,0.4);
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 2px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-box.checked {
+  background: #c9a96e;
+  border-color: #c9a96e;
+}
+
+.check-box.checked::after {
+  content: '\2713';
+  color: #0a0a0a;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.reflection-card {
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  padding: 28px;
+  margin: 20px 0;
+}
+
+.reflection-card ol {
+  padding-left: 20px;
+  color: #bbb;
+}
+
+.reflection-card ol li {
+  padding: 8px 0;
+  font-size: 16px;
+  font-style: italic;
+}
+
+.btn-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(201,169,110,0.12);
+  border: 1px solid rgba(201,169,110,0.3);
+  color: #c9a96e;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  margin-top: 10px;
+}
+
+.btn-play:hover {
+  background: rgba(201,169,110,0.2);
+  border-color: rgba(201,169,110,0.5);
+}
+
+.quote-block {
+  border-left: 3px solid #c9a96e;
+  padding: 20px 24px;
+  margin: 24px 0;
+  background: rgba(201,169,110,0.04);
+  border-radius: 0 8px 8px 0;
+}
+
+.quote-block p {
+  font-style: italic;
+  color: #c9a96e;
+  font-size: 17px;
+  margin-bottom: 0;
+}
+
+.footer {
+  text-align: center;
+  padding: 50px 20px 80px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer p {
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.footer a {
+  color: #c9a96e;
+  text-decoration: none;
+}
+
+.nav-bottom {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 30px 20px 0;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #c9a96e, #a8893e);
+  color: #0a0a0a;
+  padding: 14px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.nav-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(201,169,110,0.3);
+}
+
+.nav-btn.secondary {
+  background: rgba(201,169,110,0.12);
+  border: 1px solid rgba(201,169,110,0.3);
+  color: #c9a96e;
+}
+
+.nav-btn.secondary:hover {
+  background: rgba(201,169,110,0.2);
+}
+
+.duration-tag {
+  display: inline-block;
+  font-size: 12px;
+  color: #888;
+  background: rgba(255,255,255,0.05);
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-left: 8px;
+}
+
+@media (max-width: 600px) {
+  .header { padding: 50px 16px 30px; }
+  .section { padding: 36px 0; }
+  .action-card, .reflection-card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"></div>
+
+<div class="header">
+  <div class="phase-tag">Phase 1 — Stabilize</div>
+  <div class="day-number">Day 2 of 30</div>
+  <h1 class="day-title">Taking Inventory</h1>
+  <p class="day-subtitle">Stop the bleeding. Build the morning anchor. Get honest.</p>
+</div>
+
+<div class="container">
+
+  <!-- MORNING PROTOCOL -->
+  <div class="section">
+    <div class="section-label">Morning Protocol</div>
+    <div class="section-title">Cold Exposure + Box Breathing <span class="duration-tag">10 min</span></div>
+    <p>Before you check your phone. Before coffee. Before anything.</p>
+    <p><strong>Cold water exposure (5 min):</strong> Cold shower if you have one. If not, fill a bowl with cold water and ice — submerge your face and hands for 30 seconds on, 30 seconds off. Repeat 5 times. This activates your vagus nerve and resets your nervous system.</p>
+    <p><strong>Box breathing (3 rounds):</strong> Inhale 4 seconds. Hold 4 seconds. Exhale 4 seconds. Hold 4 seconds. That's 1 round. Do 3 rounds. Eyes closed. Spine straight.</p>
+    <p>Your body leads. Your mind follows.</p>
+  </div>
+
+  <!-- DAILY READ -->
+  <div class="section">
+    <div class="section-label">Daily Read</div>
+    <div class="section-title">Sugar: The Silent Hijacker <span class="duration-tag">5 min</span></div>
+
+    <p>The average American eats <strong>73 grams of sugar daily.</strong></p>
+
+    <p>Sugar triggers the same dopamine pathways as cocaine. It causes brain fog, mood crashes, inflammation, gut damage, and hormonal chaos.</p>
+
+    <p>When you eat sugar, your blood glucose spikes, insulin floods, you crash, cravings repeat. <strong>This cycle keeps you in survival mode.</strong> Your brain literally cannot think clearly while riding the sugar rollercoaster.</p>
+
+    <p>Today: <strong>read every label. Count your grams.</strong></p>
+  </div>
+
+  <!-- DAILY ACTION -->
+  <div class="section">
+    <div class="section-label">Daily Action</div>
+    <div class="section-title">Food Journal <span class="duration-tag">15 min</span></div>
+
+    <div class="action-card">
+      <h4>Your Assignment</h4>
+      <p>Write down everything you eat today. No judgment. Just awareness.</p>
+    </div>
+
+    <ul class="checklist">
+      <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>Track every meal and snack</li>
+      <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>Read food labels — count sugar grams</li>
+      <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>Write total sugar intake at end of day</li>
+      <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>Notice what emotion you felt before eating</li>
+    </ul>
+  </div>
+
+  <!-- VIDEO -->
+  <div class="section">
+    <div class="section-label">Today's Session</div>
+    <div class="section-title">Yoga Couple Day 2 — Accountability and Taking Inventory <span class="duration-tag">30 min</span></div>
+    <p>The Yoga Couple's 13-day relationship series. Today's session covers accountability and taking honest inventory of where you are.</p>
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/XLUnC8pEJco" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- EVENING REFLECTION -->
+  <div class="section">
+    <div class="section-label">Evening Reflection</div>
+    <div class="section-title">Before You Sleep <span class="duration-tag">5 min</span></div>
+    <p>No screens after this. Grab your journal. Answer these 3 questions honestly.</p>
+
+    <div class="reflection-card">
+      <ol>
+        <li>How many grams of sugar did I eat today?</li>
+        <li>What emotion was I feeling before I reached for food?</li>
+        <li>What would I eat differently tomorrow?</li>
+      </ol>
+    </div>
+
+    <p>Write it down. Don't just think about it. <strong>Ink on paper changes the brain differently than thoughts in your head.</strong></p>
+
+    <div class="quote-block">
+      <p>"You can't change what you won't face." — James Baldwin</p>
+    </div>
+  </div>
+
+  <!-- TOMORROW TEASER -->
+  <div class="section" style="text-align:center;">
+    <p style="color:#666; font-size:14px; margin-bottom:8px;">TOMORROW</p>
+    <p style="font-family:'Playfair Display',serif; font-size:22px; color:#fff; margin-bottom:8px;">Day 3 — Shadow Awareness</p>
+    <p style="color:#888; font-size:14px;">Meet the parts of yourself you buried to survive.</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="nav-bottom">
+    <a href="../day-1/index.html" class="nav-btn secondary">&#8592; Day 1</a>
+    <a href="../day-3/index.html" class="nav-btn">Day 3 &#8594;</a>
+  </div>
+  <br>
+  <p>Freedom Code — 30-Day Transformation</p>
+  <p style="color:#444; font-size:12px;">Built by <a href="https://thedylanewing.com">Dylan Ewing</a></p>
+  <p style="color:#555; font-size:12px; margin-top:16px;">Questions? Reply to the email that brought you here.</p>
+</div>
+
+</body>
+</html>
