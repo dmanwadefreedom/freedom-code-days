@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freedom Code — 30-Day Course Hub</title>
+<link rel="stylesheet" href="fc-interactive.css">
+<style>
+  body { padding-top: 0; }
+
+  .hub-header {
+    text-align: center;
+    padding: 60px 20px 40px;
+    background: var(--fc-cream);
+    border-bottom: 1px solid var(--fc-border);
+  }
+
+  .hub-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--fc-gold);
+    margin-bottom: 4px;
+  }
+
+  .hub-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 5vw, 42px);
+    color: var(--fc-text);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .hub-subtitle {
+    font-size: 16px;
+    color: var(--fc-text-muted);
+    max-width: 460px;
+    margin: 0 auto 24px;
+  }
+
+  /* Overall progress */
+  .hub-progress {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .hub-progress-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hub-progress-track {
+    flex: 1;
+    height: 10px;
+    background: rgba(0,0,0,0.06);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .hub-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--fc-gold), var(--fc-gold-light));
+    border-radius: 5px;
+    transition: width 0.6s;
+    width: 0%;
+  }
+
+  .hub-progress-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--fc-gold);
+    min-width: 40px;
+    text-align: right;
+  }
+
+  .hub-stats {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 16px;
+  }
+
+  .hub-stat {
+    text-align: center;
+  }
+
+  .hub-stat-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--fc-gold);
+  }
+
+  .hub-stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--fc-text-light);
+    font-weight: 500;
+  }
+
+  /* Phase sections */
+  .hub-phase {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px 20px;
+  }
+
+  .hub-phase-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--fc-gold);
+    margin-bottom: 16px;
+    padding-left: 4px;
+  }
+
+  /* Day grid */
+  .hub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .hub-day-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 12px;
+    border-radius: var(--fc-radius);
+    border: 1px solid var(--fc-border);
+    background: var(--fc-white);
+    text-decoration: none;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+    min-height: 110px;
+  }
+
+  .hub-day-card:hover {
+    border-color: var(--fc-gold-border);
+    box-shadow: var(--fc-shadow);
+    transform: translateY(-2px);
+  }
+
+  .hub-day-card.current {
+    border-color: var(--fc-gold);
+    background: var(--fc-gold-bg);
+    box-shadow: 0 0 0 3px rgba(184,148,60,0.1);
+  }
+
+  .hub-day-card.completed {
+    border-color: var(--fc-gold);
+    background: linear-gradient(135deg, rgba(184,148,60,0.04), rgba(184,148,60,0.08));
+  }
+
+  .hub-day-card.locked {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  .hub-day-num {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--fc-text-light);
+    margin-bottom: 4px;
+  }
+
+  .hub-day-card.current .hub-day-num {
+    color: var(--fc-gold);
+  }
+
+  .hub-day-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 14px;
+    color: var(--fc-text);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .hub-day-check {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--fc-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hub-day-check svg {
+    width: 12px;
+    height: 12px;
+    stroke: var(--fc-white);
+    stroke-width: 3;
+    fill: none;
+  }
+
+  .hub-day-badge {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    font-size: 10px;
+    color: var(--fc-gold);
+    font-weight: 600;
+  }
+
+  /* Footer */
+  .hub-footer {
+    text-align: center;
+    padding: 40px 20px 60px;
+    border-top: 1px solid var(--fc-border);
+    background: var(--fc-cream);
+  }
+
+  .hub-footer p {
+    color: var(--fc-text-light);
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .hub-footer a {
+    color: var(--fc-gold);
+    text-decoration: none;
+  }
+
+  @media (max-width: 500px) {
+    .hub-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .hub-day-card { min-height: 95px; padding: 16px 10px; }
+    .hub-day-title { font-size: 13px; }
+    .hub-stats { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hub-header">
+  <div class="hub-logo">Freedom Code</div>
+  <h1 class="hub-title">30-Day Transformation</h1>
+  <p class="hub-subtitle">Your journey to break the pattern. Every day builds on the last.</p>
+
+  <div class="hub-progress">
+    <div class="hub-progress-row">
+      <div class="hub-progress-track">
+        <div class="hub-progress-fill" id="hub-progress-fill"></div>
+      </div>
+      <span class="hub-progress-label" id="hub-progress-label">0%</span>
+    </div>
+    <div class="hub-stats">
+      <div class="hub-stat">
+        <div class="hub-stat-value" id="hub-completed-count">0</div>
+        <div class="hub-stat-label">Days Done</div>
+      </div>
+      <div class="hub-stat">
+        <div class="hub-stat-value" id="hub-streak-count">0</div>
+        <div class="hub-stat-label">Day Streak</div>
+      </div>
+      <div class="hub-stat">
+        <div class="hub-stat-value" id="hub-remaining-count">30</div>
+        <div class="hub-stat-label">Remaining</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="hub-content"></div>
+
+<div class="hub-footer">
+  <p>Freedom Code — 30-Day Transformation</p>
+  <p>Built by <a href="https://thedylanewing.com">Dylan Ewing</a></p>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const FC_PREFIX = 'fc_';
+  const TOTAL_DAYS = 30;
+  const SECTION_KEYS = ['morning', 'read', 'action', 'video', 'reflection'];
+
+  function load(key, fallback) {
+    try { const v = localStorage.getItem(FC_PREFIX + key); return v !== null ? JSON.parse(v) : fallback; }
+    catch { return fallback; }
+  }
+
+  function isDayComplete(day) {
+    const checks = load('day_' + day + '_sections', {});
+    return SECTION_KEYS.every(k => checks[k] === true);
+  }
+
+  function getStreak() {
+    const completed = load('completed_days', []);
+    if (completed.length === 0) return 0;
+    const sorted = [...completed].sort((a, b) => a - b);
+    let streak = 0;
+    for (let i = sorted.length - 1; i >= 0; i--) {
+      if (i === sorted.length - 1) streak = 1;
+      else if (sorted[i] === sorted[i + 1] - 1) streak++;
+      else break;
+    }
+    return streak;
+  }
+
+  /* Day metadata */
+  const DAYS = [
+    { day: 1, title: 'The Wake-Up Call', phase: 1 },
+    { day: 2, title: 'Taking Inventory', phase: 1 },
+    { day: 3, title: 'Shadow Awareness', phase: 1 },
+    { day: 4, title: 'Gut Reset Begins', phase: 1 },
+    { day: 5, title: 'Digital Detox', phase: 1 },
+    { day: 6, title: 'Somatic Release', phase: 1 },
+    { day: 7, title: 'Week 1 Integration', phase: 1 },
+    { day: 8, title: 'Emotional Mapping', phase: 2 },
+    { day: 9, title: 'Trigger Tracking', phase: 2 },
+    { day: 10, title: 'Inner Child Work', phase: 2 },
+    { day: 11, title: 'Boundary Setting', phase: 2 },
+    { day: 12, title: 'Belief Inventory', phase: 2 },
+    { day: 13, title: 'Energy Audit', phase: 2 },
+    { day: 14, title: 'Week 2 Integration', phase: 2 },
+    { day: 15, title: 'New Morning Ritual', phase: 3 },
+    { day: 16, title: 'Environment Design', phase: 3 },
+    { day: 17, title: 'Rewiring Self-Talk', phase: 3 },
+    { day: 18, title: 'Movement Practice', phase: 3 },
+    { day: 19, title: 'Gratitude Protocol', phase: 3 },
+    { day: 20, title: 'Relationship Reset', phase: 3 },
+    { day: 21, title: 'Week 3 Integration', phase: 3 },
+    { day: 22, title: 'Vision Building', phase: 4 },
+    { day: 23, title: 'Purpose Alignment', phase: 4 },
+    { day: 24, title: 'Energy Mastery', phase: 4 },
+    { day: 25, title: 'Legacy Mindset', phase: 4 },
+    { day: 26, title: 'Abundance Activation', phase: 4 },
+    { day: 27, title: 'Community & Tribe', phase: 4 },
+    { day: 28, title: 'The New Identity', phase: 4 },
+    { day: 29, title: 'Freedom Blueprint', phase: 4 },
+    { day: 30, title: 'The New You', phase: 4 }
+  ];
+
+  const PHASES = {
+    1: 'Phase 1 — Stabilize (Days 1-7)',
+    2: 'Phase 2 — Disrupt (Days 8-14)',
+    3: 'Phase 3 — Install (Days 15-21)',
+    4: 'Phase 4 — Activate (Days 22-30)'
+  };
+
+  const completedDays = load('completed_days', []);
+
+  /* Find current day: first incomplete day, or the last one */
+  let currentDay = 1;
+  for (let d = 1; d <= TOTAL_DAYS; d++) {
+    if (!isDayComplete(d)) { currentDay = d; break; }
+    if (d === TOTAL_DAYS) currentDay = TOTAL_DAYS;
+  }
+
+  /* Build grid */
+  const content = document.getElementById('hub-content');
+  let currentPhase = 0;
+  let phaseHtml = '';
+
+  DAYS.forEach(dayInfo => {
+    if (dayInfo.phase !== currentPhase) {
+      if (currentPhase > 0) phaseHtml += '</div></div>';
+      currentPhase = dayInfo.phase;
+      phaseHtml += `<div class="hub-phase"><div class="hub-phase-label">${PHASES[currentPhase]}</div><div class="hub-grid">`;
+    }
+
+    const isComplete = completedDays.includes(dayInfo.day);
+    const isCurrent = dayInfo.day === currentDay;
+    /* Unlocked if: day 1, or previous day complete, or this day is already complete */
+    const isUnlocked = dayInfo.day === 1 || isComplete || isDayComplete(dayInfo.day - 1);
+
+    let cardClass = 'hub-day-card';
+    if (isComplete) cardClass += ' completed';
+    if (isCurrent && !isComplete) cardClass += ' current';
+    if (!isUnlocked) cardClass += ' locked';
+
+    phaseHtml += `
+      <a class="${cardClass}" href="day-${dayInfo.day}/index.html">
+        ${isComplete ? '<div class="hub-day-check"><svg viewBox="0 0 12 10"><polyline points="1 5 4.5 8.5 11 1.5"/></svg></div>' : ''}
+        <div class="hub-day-num">Day ${dayInfo.day}</div>
+        <div class="hub-day-title">${dayInfo.title}</div>
+        ${isCurrent && !isComplete ? '<div class="hub-day-badge">Current</div>' : ''}
+      </a>`;
+  });
+
+  phaseHtml += '</div></div>';
+  content.innerHTML = phaseHtml;
+
+  /* Stats */
+  const completedCount = completedDays.length;
+  const pct = Math.round((completedCount / TOTAL_DAYS) * 100);
+  const streak = getStreak();
+
+  document.getElementById('hub-progress-fill').style.width = pct + '%';
+  document.getElementById('hub-progress-label').textContent = pct + '%';
+  document.getElementById('hub-completed-count').textContent = completedCount;
+  document.getElementById('hub-streak-count').textContent = streak;
+  document.getElementById('hub-remaining-count').textContent = TOTAL_DAYS - completedCount;
+
+})();
+</script>
+</body>
+</html>
