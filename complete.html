@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You Did It — Freedom Code Complete</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fc-interactive.css">
+<style>
+:root{--bg:#ffffff;--bg2:#f7f5f2;--bg3:#eeeae4;--txt:#1a1714;--dim:#6b6560;--mute:#9a9590;--gold:#b8943c;--goldg:rgba(184,148,60,.08);--goldh:#a67d30;--goldb:rgba(184,148,60,.2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;-webkit-font-smoothing:antialiased}
+.wrap{max-width:640px;margin:0 auto;padding:0 24px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes confettiFall{0%{transform:translateY(-10vh) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+@keyframes glow{0%,100%{box-shadow:0 0 20px rgba(184,148,60,.15)}50%{box-shadow:0 0 40px rgba(184,148,60,.3)}}
+.anim{opacity:0;animation:fadeUp .7s ease forwards}
+.d1{animation-delay:.2s}.d2{animation-delay:.4s}.d3{animation-delay:.6s}.d4{animation-delay:.8s}.d5{animation-delay:1s}.d6{animation-delay:1.2s}.d7{animation-delay:1.4s}.d8{animation-delay:1.6s}
+
+.hero{padding:80px 0 40px;text-align:center}
+.badge{width:120px;height:120px;border-radius:50%;background:var(--goldg);border:3px solid var(--gold);display:inline-flex;align-items:center;justify-content:center;font-size:48px;margin-bottom:24px;animation:glow 3s ease infinite}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(30px,7vw,44px);line-height:1.15;margin-bottom:16px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:17px;color:var(--dim);max-width:540px;margin:0 auto 12px;line-height:1.8}
+.days-badge{display:inline-block;background:var(--gold);color:#fff;font-size:14px;font-weight:700;padding:8px 24px;border-radius:100px;margin:20px 0}
+.divider{width:48px;height:2px;background:var(--gold);opacity:.35;margin:40px auto}
+
+.section{padding:32px 0}
+.section h2{font-family:'DM Serif Display',serif;font-size:clamp(24px,5vw,32px);line-height:1.2;margin-bottom:16px}
+
+.card{background:var(--bg2);border-radius:16px;padding:32px 28px;margin-bottom:20px;border:1px solid rgba(0,0,0,.06)}
+.card h3{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:12px}
+.card p{font-size:15px;color:var(--dim);line-height:1.8;margin-bottom:12px}
+.card p:last-child{margin-bottom:0}
+
+.quote{background:var(--goldg);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:24px 28px;margin:32px 0;font-size:16px;line-height:1.85;font-style:italic;color:var(--txt)}
+
+/* Reflection journal */
+.reflect-prompt{font-size:16px;font-weight:600;color:var(--txt);margin-bottom:8px}
+.reflect-box{width:100%;min-height:100px;padding:16px;background:var(--bg2);border:1.5px solid rgba(0,0,0,.1);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--txt);line-height:1.7;resize:vertical;outline:none;transition:border-color .3s}
+.reflect-box:focus{border-color:var(--gold)}
+.reflect-saved{font-size:12px;color:var(--mute);margin-top:6px}
+
+/* Keep going list */
+.keep-list{list-style:none;padding:0}
+.keep-list li{font-size:15px;color:var(--dim);padding:14px 0;border-bottom:1px solid rgba(0,0,0,.05);display:flex;align-items:flex-start;gap:12px;line-height:1.6}
+.keep-list li:last-child{border:none}
+.keep-list li::before{content:'';flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:8px}
+
+/* Next level CTA */
+.next-level{background:linear-gradient(135deg,var(--bg2),rgba(184,148,60,.06));border:2px solid var(--goldb);border-radius:16px;padding:36px 28px;margin:32px 0;text-align:center}
+.next-level h3{font-family:'DM Serif Display',serif;font-size:24px;margin-bottom:12px}
+.next-level p{font-size:15px;color:var(--dim);line-height:1.8;margin-bottom:16px;max-width:520px;margin-left:auto;margin-right:auto}
+.next-level .features{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0;text-align:left}
+.next-level .feat{font-size:14px;color:var(--dim);padding:10px 14px;background:rgba(255,255,255,.7);border-radius:8px;line-height:1.5}
+.next-level .feat strong{color:var(--txt);display:block;font-size:13px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--gold);color:#fff;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:700;padding:18px 44px;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:all .3s;width:100%;max-width:440px}
+.btn:hover{background:var(--goldh);transform:translateY(-2px);box-shadow:0 10px 36px rgba(184,148,60,.22)}
+.btn-note{display:block;text-align:center;font-size:13px;color:var(--mute);margin-top:14px}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--gold);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;padding:14px 32px;border:2px solid var(--gold);border-radius:8px;cursor:pointer;text-decoration:none;transition:all .3s}
+.btn-secondary:hover{background:var(--goldg)}
+
+.share-card{background:var(--bg2);border-radius:12px;padding:28px;margin:32px 0;text-align:center;border:1px solid rgba(0,0,0,.06)}
+.share-card h3{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:8px;color:var(--gold)}
+.share-card p{font-size:14px;color:var(--dim);margin-bottom:16px}
+.share-link{display:flex;gap:8px;max-width:360px;margin:0 auto}
+.share-link input{flex:1;padding:10px 14px;background:var(--bg3);border:1px solid rgba(0,0,0,.1);border-radius:6px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:13px;outline:none}
+.share-link button{background:var(--gold);color:#fff;border:none;padding:10px 18px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+
+.footer{text-align:center;padding:40px 0;font-size:12px;color:var(--mute)}
+.footer a{color:var(--gold);text-decoration:none}
+
+.confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden}
+.confetti span{position:absolute;width:10px;height:10px;border-radius:2px;animation:confettiFall 3s ease-out forwards}
+
+@media(max-width:640px){
+  .next-level .features{grid-template-columns:1fr}
+  .hero{padding:48px 0 28px}
+  .share-link{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="confetti" id="confetti"></div>
+
+<div class="wrap">
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="badge anim d1">&#127942;</div>
+  <h1 class="anim d2">You broke the <em>pattern.</em></h1>
+  <p class="hero-sub anim d3">30 days. 4 phases. You showed up when your brain told you to quit. That's not motivation. That's rewiring.</p>
+  <div class="days-badge anim d4">30 / 30 Days Complete</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ LOOK BACK ═══ -->
+<div class="section anim d4">
+  <h2>Look How Far You've Come</h2>
+  <div class="card">
+    <h3>30 Days Ago</h3>
+    <p>You were running a survival program that was installed before you could tie your shoes. You didn't know its name. You didn't know it was making your decisions. You just knew something was off.</p>
+  </div>
+  <div class="card" style="border:1.5px solid var(--goldb)">
+    <h3 style="color:var(--gold)">Today</h3>
+    <p style="color:var(--txt)">You named the pattern. You faced the shadow. You reset your nervous system. You sat with the discomfort instead of running from it. You breathed through it instead of numbing it. You showed up 30 mornings in a row when everything in your body said "go back to bed."</p>
+    <p style="color:var(--txt);font-weight:600">That's not a small thing. That's everything.</p>
+  </div>
+</div>
+
+<!-- ═══ FINAL REFLECTION ═══ -->
+<div class="section anim d5">
+  <h2>One Last Reflection</h2>
+  <p style="font-size:15px;color:var(--dim);line-height:1.8;margin-bottom:24px">Grab your journal one more time. This is the last entry of the program — but not the last entry of your life.</p>
+
+  <div style="margin-bottom:20px">
+    <div class="reflect-prompt">Who were you 30 days ago?</div>
+    <textarea class="reflect-box" id="j1" placeholder="Write here..."></textarea>
+    <div class="reflect-saved" id="j1-status"></div>
+  </div>
+
+  <div style="margin-bottom:20px">
+    <div class="reflect-prompt">What pattern did you break?</div>
+    <textarea class="reflect-box" id="j2" placeholder="Write here..."></textarea>
+    <div class="reflect-saved" id="j2-status"></div>
+  </div>
+
+  <div style="margin-bottom:20px">
+    <div class="reflect-prompt">What does freedom feel like now?</div>
+    <textarea class="reflect-box" id="j3" placeholder="Write here..."></textarea>
+    <div class="reflect-saved" id="j3-status"></div>
+  </div>
+</div>
+
+<div class="quote anim d5">
+  You didn't just complete a program. You proved to your nervous system that you can be trusted. That when things get hard, you don't run. You don't shut down. You don't shape-shift. You stay. And you breathe. That changes everything from here.
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ KEEP GOING ═══ -->
+<div class="section anim d6">
+  <h2>What to Keep Doing</h2>
+  <p style="font-size:15px;color:var(--dim);line-height:1.8;margin-bottom:16px">The program ends. The protocol doesn't. Here's your maintenance stack:</p>
+  <div class="card">
+    <ul class="keep-list">
+      <li><strong>Morning breathwork.</strong> 5 minutes. Every day. This is your anchor. Don't negotiate with it.</li>
+      <li><strong>Evening journal.</strong> 3 questions before bed. Pattern check. Autopilot check. Gratitude.</li>
+      <li><strong>Gateway Experience.</strong> 2-3x per week minimum. The tapes get deeper with repetition. You're not done — you're just getting started.</li>
+      <li><strong>Movement.</strong> Walk, yoga, whatever. Keep the body moving. Stagnant body = stagnant pattern.</li>
+      <li><strong>Revisit any day.</strong> Your course portal is lifetime access. Go back to the days that hit hardest. They'll hit different now.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ NEXT LEVEL — SOFT UPSELL ═══ -->
+<div class="section anim d7">
+  <h2>Ready to Go Deeper?</h2>
+  <p style="font-size:15px;color:var(--dim);line-height:1.8;margin-bottom:8px">You just proved you can do the work alone. But there's a level you can't reach by yourself.</p>
+
+  <div class="next-level">
+    <h3>Freedom Code Group</h3>
+    <p>Weekly live calls with Dylan. A private community of people who've done the 30 days. Personalized pattern coaching. Advanced Gateway sessions. This is where the 30-day reset becomes a permanent identity shift.</p>
+
+    <div class="features">
+      <div class="feat"><strong>Weekly live calls</strong>Group coaching with Dylan. Recorded if you miss one.</div>
+      <div class="feat"><strong>Private community</strong>People who get it. No motivational fluff. Real support.</div>
+      <div class="feat"><strong>1:1 pattern session</strong>15 min with Dylan to decode your specific pattern.</div>
+      <div class="feat"><strong>Advanced protocols</strong>Gateway deep dives, somatic work, and breathwork progressions.</div>
+    </div>
+
+    <p style="font-size:14px;color:var(--mute);margin-bottom:20px">Opening soon. Limited to 50 people per cohort.</p>
+    <a href="https://thedylanewing.com/waitlist" class="btn" id="waitlist-btn">Join the Waitlist &rarr;</a>
+    <span class="btn-note">No payment. Just first access when doors open.</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ SHARE ═══ -->
+<div class="share-card anim d8">
+  <h3>Know Someone Who Needs This?</h3>
+  <p>You know what it's like to be stuck in a pattern. Send them the quiz. It might change their life.</p>
+  <div class="share-link">
+    <input type="text" value="https://thedylanewing.com" id="share-url" readonly>
+    <button onclick="copyLink()">Copy</button>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<div class="footer">
+  <p style="margin-bottom:12px"><a href="day-1/" class="btn-secondary">Revisit Day 1 &rarr;</a></p>
+  <p>Freedom Code &mdash; Built by <a href="https://thedylanewing.com">Dylan Ewing</a></p>
+  <p style="margin-top:8px">&copy; 2026 Dylan Ewing. All rights reserved.</p>
+</div>
+
+</div>
+
+<script>
+// Confetti
+(function(){
+  var c=document.getElementById('confetti');
+  var colors=['#b8943c','#c4543a','#c49a3a','#5a7fa5','#5aa57f','#d4a853','#e8d5a3'];
+  for(var i=0;i<80;i++){
+    var s=document.createElement('span');
+    s.style.left=Math.random()*100+'%';
+    s.style.background=colors[Math.floor(Math.random()*colors.length)];
+    s.style.animationDelay=Math.random()*2+'s';
+    s.style.animationDuration=(2+Math.random()*2)+'s';
+    s.style.width=(6+Math.random()*10)+'px';
+    s.style.height=(6+Math.random()*10)+'px';
+    c.appendChild(s);
+  }
+  setTimeout(function(){c.style.display='none';},6000);
+})();
+
+// Journal autosave
+['j1','j2','j3'].forEach(function(id){
+  var el=document.getElementById(id);
+  var status=document.getElementById(id+'-status');
+  var saved=localStorage.getItem('fc-complete-'+id);
+  if(saved){el.value=saved;status.textContent='Saved';}
+  var timer;
+  el.addEventListener('input',function(){
+    clearTimeout(timer);
+    timer=setTimeout(function(){
+      localStorage.setItem('fc-complete-'+id,el.value);
+      status.textContent='Saved';
+    },800);
+  });
+});
+
+// Copy link
+function copyLink(){
+  var input=document.getElementById('share-url');
+  input.select();
+  navigator.clipboard.writeText(input.value).then(function(){
+    var btn=input.nextElementSibling;
+    btn.textContent='Copied!';
+    setTimeout(function(){btn.textContent='Copy';},2000);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're In — Freedom Code</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffffff;--bg2:#f7f5f2;--bg3:#eeeae4;--txt:#1a1714;--dim:#6b6560;--mute:#9a9590;--gold:#b8943c;--goldg:rgba(184,148,60,.08);--goldh:#a67d30;--goldb:rgba(184,148,60,.2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;-webkit-font-smoothing:antialiased}
+.wrap{max-width:640px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--gold);color:#fff;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:700;padding:18px 44px;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:all .3s;width:100%;max-width:440px}
+.btn:hover{background:var(--goldh);transform:translateY(-2px);box-shadow:0 10px 36px rgba(184,148,60,.22)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes confettiFall{0%{transform:translateY(-10vh) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+.anim{opacity:0;animation:fadeUp .7s ease forwards}
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}.d4{animation-delay:.55s}.d5{animation-delay:.7s}.d6{animation-delay:.85s}.d7{animation-delay:1s}
+
+.hero{padding:80px 0 40px;text-align:center}
+.hero .check{width:80px;height:80px;border-radius:50%;background:var(--goldg);border:3px solid var(--gold);display:inline-flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:24px}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(30px,7vw,44px);line-height:1.15;margin-bottom:16px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:17px;color:var(--dim);max-width:520px;margin:0 auto 32px;line-height:1.8}
+
+.card{background:var(--bg2);border-radius:16px;padding:32px 28px;margin-bottom:20px;border:1px solid rgba(0,0,0,.06)}
+.card h3{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:12px}
+.card p{font-size:15px;color:var(--dim);line-height:1.8;margin-bottom:12px}
+.card p:last-child{margin-bottom:0}
+.card .step-num{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--gold);color:#fff;font-size:13px;font-weight:700;text-align:center;line-height:28px;margin-right:10px}
+
+.expect-list{list-style:none;padding:0;margin:16px 0 0}
+.expect-list li{font-size:15px;color:var(--dim);padding:12px 0;border-bottom:1px solid rgba(0,0,0,.05);display:flex;align-items:flex-start;gap:12px;line-height:1.6}
+.expect-list li:last-child{border:none}
+.expect-list li::before{content:'';flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:8px}
+
+.quote{background:var(--goldg);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:24px 28px;margin:32px 0;font-size:16px;line-height:1.85;font-style:italic;color:var(--txt)}
+
+.footer{text-align:center;padding:40px 0;font-size:12px;color:var(--mute)}
+.footer a{color:var(--gold);text-decoration:none}
+
+.confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden}
+.confetti span{position:absolute;width:10px;height:10px;border-radius:2px;animation:confettiFall 3s ease-out forwards}
+</style>
+</head>
+<body>
+
+<div class="confetti" id="confetti"></div>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="check anim d1">&#10003;</div>
+  <h1 class="anim d2">You're in. <em>Let's go.</em></h1>
+  <p class="hero-sub anim d3">Your first morning email drops tomorrow at 6 AM Eastern. 30 days starts now. Here's everything you need to know.</p>
+</div>
+
+<div class="card anim d4">
+  <h3>What Happens Next</h3>
+  <p><span class="step-num">1</span><strong>Check your email.</strong> You'll get a welcome email from Dylan in the next few minutes with your course access link and your pattern-specific Day 1 Reset PDF.</p>
+  <p><span class="step-num">2</span><strong>Tomorrow, 6 AM.</strong> Your first daily email lands. Open it. Do the work. 20-30 minutes.</p>
+  <p><span class="step-num">3</span><strong>Show up for 30 days.</strong> Morning breathwork. Daily read. One action. Evening reflection. That's the whole protocol.</p>
+</div>
+
+<div class="card anim d5">
+  <h3>What You'll Get Every Morning</h3>
+  <ul class="expect-list">
+    <li>Morning breathwork protocol (5 min — box breathing, 4-7-8, or Wim Hof depending on the day)</li>
+    <li>Daily read — short, punchy education on what's actually happening in your brain</li>
+    <li>One daily action — journaling, shadow work, pattern tracking, movement</li>
+    <li>Guided video — Gateway Experience, breathwork sessions, yoga, or meditation</li>
+    <li>Evening reflection — 3 questions before bed, pen on paper</li>
+  </ul>
+</div>
+
+<div class="card anim d5">
+  <h3>Your Course Portal</h3>
+  <p>Bookmark this link. This is your home for the next 30 days. All your daily content, interactive breathwork timers, journal boxes, and progress tracking live here.</p>
+  <div style="text-align:center;margin-top:20px">
+    <a href="day-1/" class="btn">Open Day 1 &rarr;</a>
+    <span style="display:block;font-size:13px;color:var(--mute);margin-top:14px">Or wait for tomorrow's email. Your call.</span>
+  </div>
+</div>
+
+<div class="quote anim d6">
+  You didn't just buy a program. You made a decision. The old pattern doesn't know it yet — but its days are numbered.
+</div>
+
+<div class="card anim d7" style="text-align:center;border:1.5px solid var(--goldb)">
+  <h3>One More Thing</h3>
+  <p style="color:var(--txt)">Get a journal. A real one. Pen and paper. Not your phone. Not a note app. The science is clear — writing by hand activates different neural pathways than typing. You'll need it starting Day 1.</p>
+</div>
+
+<div class="footer">
+  <p>Freedom Code &mdash; Built by <a href="https://thedylanewing.com">Dylan Ewing</a></p>
+  <p style="margin-top:8px">&copy; 2026 Dylan Ewing. All rights reserved.</p>
+  <p style="margin-top:8px">Questions? Reply to the welcome email.</p>
+</div>
+
+</div>
+
+<script>
+// Confetti burst on load
+(function(){
+  var c=document.getElementById('confetti');
+  var colors=['#b8943c','#c4543a','#c49a3a','#5a7fa5','#5aa57f','#d4a853','#e8d5a3'];
+  for(var i=0;i<60;i++){
+    var s=document.createElement('span');
+    s.style.left=Math.random()*100+'%';
+    s.style.background=colors[Math.floor(Math.random()*colors.length)];
+    s.style.animationDelay=Math.random()*1.5+'s';
+    s.style.animationDuration=(2+Math.random()*2)+'s';
+    s.style.width=(6+Math.random()*8)+'px';
+    s.style.height=(6+Math.random()*8)+'px';
+    c.appendChild(s);
+  }
+  setTimeout(function(){c.style.display='none';},5000);
+})();
+</script>
+</body>
+</html>
