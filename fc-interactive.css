@@ -1020,3 +1020,16 @@ body {
   width: 100%;
   border-radius: var(--fc-radius-sm);
 }
+
+/* ---------- AUDIO PLAYER (clean, no video frame) ---------- */
+.audio-player {
+  background: var(--fc-gold-bg);
+  border: 1px solid var(--fc-gold-border);
+  border-radius: var(--fc-radius);
+  padding: 16px;
+  margin: 12px 0;
+}
+.audio-player audio {
+  width: 100%;
+  border-radius: var(--fc-radius-sm);
+}
