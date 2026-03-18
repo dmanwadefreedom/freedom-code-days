@@ -1003,3 +1003,20 @@ body {
 .section[style] p[style*="color: #555"],
 .section[style] p[style*="color:#444"],
 .section[style] p[style*="color: #444"] { color: var(--fc-text-light) !important; }
+
+/* ---------- AUDIO PLAYER (replaces video-embed for MP3s) ---------- */
+.video-embed:has(audio) {
+  position: relative;
+  padding-bottom: 0;
+  height: auto;
+  overflow: visible;
+  background: var(--fc-gold-bg);
+  border: 1px solid var(--fc-gold-border);
+  border-radius: var(--fc-radius);
+  padding: 16px;
+}
+.video-embed:has(audio) audio {
+  position: relative;
+  width: 100%;
+  border-radius: var(--fc-radius-sm);
+}
