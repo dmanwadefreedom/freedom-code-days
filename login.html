@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Access — Freedom Code</title>
+<link rel="stylesheet" href="fc-interactive.css">
+<style>
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--fc-cream);
+    padding: 20px;
+  }
+  .login-card {
+    background: var(--fc-white);
+    border-radius: var(--fc-radius);
+    box-shadow: var(--fc-shadow-lg);
+    padding: 48px 40px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+  }
+  .login-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--fc-gold);
+    margin-bottom: 4px;
+  }
+  .login-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--fc-text);
+    margin-bottom: 8px;
+  }
+  .login-subtitle {
+    color: var(--fc-text-muted);
+    font-size: 15px;
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+  .login-input {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 18px;
+    font-family: 'DM Sans', sans-serif;
+    border: 2px solid var(--fc-border);
+    border-radius: var(--fc-radius-sm);
+    text-align: center;
+    letter-spacing: 3px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .login-input:focus {
+    border-color: var(--fc-gold);
+  }
+  .login-input.error {
+    border-color: #c0392b;
+    animation: shake 0.4s;
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+  }
+  .login-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--fc-gold);
+    color: white;
+    border: none;
+    border-radius: var(--fc-radius-sm);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .login-btn:hover {
+    background: var(--fc-gold-dark);
+  }
+  .login-error {
+    color: #c0392b;
+    font-size: 14px;
+    margin-top: 12px;
+    min-height: 20px;
+  }
+  .login-help {
+    color: var(--fc-text-light);
+    font-size: 13px;
+    margin-top: 24px;
+  }
+  .login-help a {
+    color: var(--fc-gold);
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="login-card">
+  <div class="login-logo">Freedom Code</div>
+  <div class="login-title">Enter Your Access Code</div>
+  <p class="login-subtitle">Your access code was sent to your email after purchase.</p>
+
+  <form id="loginForm" onsubmit="return checkCode(event)">
+    <input type="text" id="codeInput" class="login-input" placeholder="ACCESS CODE" autocomplete="off" autofocus>
+    <button type="submit" class="login-btn">Unlock Course</button>
+    <div class="login-error" id="errorMsg"></div>
+  </form>
+
+  <p class="login-help">Need help? Email <a href="mailto:dylan@thedylanewing.com">dylan@thedylanewing.com</a></p>
+</div>
+
+<script>
+function checkCode(e) {
+  e.preventDefault();
+  const code = document.getElementById('codeInput').value.trim().toUpperCase();
+  const input = document.getElementById('codeInput');
+  const err = document.getElementById('errorMsg');
+
+  if (code === 'FREEDOM2026') {
+    localStorage.setItem('fc_access', 'FREEDOM2026');
+    window.location.href = './';
+  } else {
+    input.classList.add('error');
+    err.textContent = 'Invalid code. Check your email or contact support.';
+    setTimeout(() => input.classList.remove('error'), 400);
+  }
+  return false;
+}
+</script>
+
+</body>
+</html>
