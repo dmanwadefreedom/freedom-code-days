@@ -1,6 +1,6 @@
 /* ============================================================
-   FREEDOM CODE — Interactive Course Theme
-   Light theme: white + cream + warm gold
+   FREEDOM CODE — Egyptian Sacred Geometry Theme
+   Dark mystical: cosmic void + Egyptian gold + sacred geometry
    Fonts: DM Sans (body) + DM Serif Display (headings)
    ============================================================ */
 
@@ -10,32 +10,152 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --fc-white: #ffffff;
-  --fc-cream: #f7f5f2;
-  --fc-warm-bg: #faf8f5;
-  --fc-gold: #b8943c;
-  --fc-gold-light: #d4b563;
+  --fc-void: #0a0a14;
+  --fc-surface: rgba(15,15,30,0.8);
+  --fc-surface-solid: #0f0f1e;
+  --fc-gold: #c8a045;
+  --fc-gold-light: #e8c869;
   --fc-gold-dark: #9a7a2e;
-  --fc-gold-bg: rgba(184,148,60,0.06);
-  --fc-gold-border: rgba(184,148,60,0.18);
-  --fc-text: #2c2c2c;
-  --fc-text-muted: #6b6560;
-  --fc-text-light: #999590;
-  --fc-border: rgba(0,0,0,0.07);
+  --fc-gold-glow: rgba(200,160,69,0.15);
+  --fc-gold-border: rgba(200,160,69,0.25);
+  --fc-gold-bg: rgba(200,160,69,0.08);
+  --fc-lapis: #1a4a6a;
+  --fc-teal: #2a8a7a;
+  --fc-text: #e8e0d0;
+  --fc-text-muted: #b0a898;
+  --fc-text-light: #8a7a6a;
+  --fc-border: rgba(200,160,69,0.12);
   --fc-radius: 12px;
   --fc-radius-sm: 8px;
-  --fc-shadow: 0 2px 16px rgba(0,0,0,0.05);
-  --fc-shadow-lg: 0 8px 40px rgba(0,0,0,0.08);
+  --fc-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  --fc-shadow-lg: 0 8px 40px rgba(0,0,0,0.5);
+  --fc-glass: rgba(15,15,30,0.6);
+  --fc-glass-border: rgba(200,160,69,0.15);
+
+  /* Backward-compatible aliases (old light-theme vars → new dark equivalents) */
+  --fc-white: var(--fc-void);
+  --fc-cream: var(--fc-surface-solid);
+  --fc-warm-bg: var(--fc-surface-solid);
 }
 
+/* ---------- FLOWER OF LIFE BACKGROUND PATTERN ---------- */
 body {
   font-family: 'DM Sans', sans-serif;
-  background: var(--fc-white);
+  background: var(--fc-void);
   color: var(--fc-text);
   line-height: 1.75;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
-  padding-top: 56px; /* space for fixed nav */
+  padding-top: 56px;
+  position: relative;
+  overflow-x: hidden;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='28' fill='none' stroke='%23c8a045' stroke-width='0.4' opacity='0.03'/%3E%3Ccircle cx='60' cy='32' r='28' fill='none' stroke='%23c8a045' stroke-width='0.4' opacity='0.03'/%3E%3Ccircle cx='60' cy='88' r='28' fill='none' stroke='%23c8a045' stroke-width='0.4' opacity='0.03'/%3E%3Ccircle cx='35.76' cy='46' r='28' fill='none' stroke='%23c8a045' stroke-width='0.4' opacity='0.03'/%3E%3Ccircle cx='84.24' cy='46' r='28' fill='none' stroke='%23c8a045' stroke-width='0.4' opacity='0.03'/%3E%3Ccircle cx='35.76' cy='74' r='28' fill='none' stroke='%23c8a045' stroke-width='0.4' opacity='0.03'/%3E%3Ccircle cx='84.24' cy='74' r='28' fill='none' stroke='%23c8a045' stroke-width='0.4' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* ---------- STAR FIELD ---------- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(232,200,105,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 40%, rgba(232,200,105,0.3) 0%, transparent 100%),
+    radial-gradient(1.2px 1.2px at 40% 10%, rgba(232,200,105,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 65%, rgba(232,200,105,0.25) 0%, transparent 100%),
+    radial-gradient(0.8px 0.8px at 70% 30%, rgba(232,200,105,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 55%, rgba(232,200,105,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 15% 80%, rgba(232,200,105,0.3) 0%, transparent 100%),
+    radial-gradient(0.8px 0.8px at 50% 90%, rgba(232,200,105,0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 85%, rgba(232,200,105,0.35) 0%, transparent 100%),
+    radial-gradient(1.2px 1.2px at 35% 50%, rgba(232,200,105,0.2) 0%, transparent 100%),
+    radial-gradient(0.8px 0.8px at 65% 20%, rgba(200,160,69,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 5% 50%, rgba(200,160,69,0.25) 0%, transparent 100%),
+    radial-gradient(1.2px 1.2px at 80% 70%, rgba(200,160,69,0.2) 0%, transparent 100%),
+    radial-gradient(0.6px 0.6px at 45% 35%, rgba(232,200,105,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 20% 60%, rgba(232,200,105,0.2) 0%, transparent 100%),
+    radial-gradient(0.8px 0.8px at 75% 45%, rgba(232,200,105,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 15%, rgba(200,160,69,0.25) 0%, transparent 100%),
+    radial-gradient(0.6px 0.6px at 60% 80%, rgba(232,200,105,0.2) 0%, transparent 100%);
+  animation: starPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes starPulse {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* ---------- COSMIC ORB (Ra) ---------- */
+body::after {
+  content: '';
+  position: fixed;
+  top: -120px;
+  right: -80px;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(200,160,69,0.08) 0%,
+    rgba(200,160,69,0.04) 30%,
+    rgba(200,160,69,0.01) 60%,
+    transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+  animation: orbFloat 20s ease-in-out infinite alternate;
+}
+
+@keyframes orbFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-20px, 15px) scale(1.05); }
+  100% { transform: translate(10px, -10px) scale(0.95); }
+}
+
+/* Make all content sit above the star field + orb */
+.fc-topnav,
+.header,
+.fc-completion-bar,
+.container,
+.footer,
+.fc-toast,
+.fc-confetti-canvas {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- SACRED BORDER DIVIDER ---------- */
+/* Replaces plain 1px borders with Egyptian frieze pattern */
+.sacred-border,
+.section {
+  border-bottom-style: none;
+  border-bottom: none;
+}
+
+.section::after {
+  content: '';
+  display: block;
+  height: 1px;
+  margin-top: 44px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 4px,
+      var(--fc-gold-border) 4px,
+      var(--fc-gold-border) 6px,
+      transparent 6px,
+      transparent 14px,
+      var(--fc-gold-border) 14px,
+      var(--fc-gold-border) 18px,
+      transparent 18px,
+      transparent 22px
+    );
+  opacity: 0.6;
+}
+
+.section:last-child::after {
+  display: none;
 }
 
 /* ---------- PROGRESS NAV (FIXED TOP BAR) ---------- */
@@ -43,10 +163,10 @@ body {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  background: var(--fc-white);
+  background: rgba(10,10,20,0.85);
   border-bottom: 1px solid var(--fc-border);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .fc-topnav-inner {
@@ -96,17 +216,35 @@ body {
 .fc-progress-track {
   width: 100%;
   height: 6px;
-  background: var(--fc-cream);
+  background: rgba(200,160,69,0.1);
   border-radius: 3px;
   overflow: hidden;
   position: relative;
 }
 
+/* Pyramid texture overlay on progress bars */
 .fc-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--fc-gold), var(--fc-gold-light));
+  background: linear-gradient(90deg, var(--fc-gold-dark), var(--fc-gold), var(--fc-gold-light));
   border-radius: 3px;
   transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.fc-progress-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 8px,
+    rgba(10,10,20,0.15) 8px,
+    rgba(10,10,20,0.15) 9px
+  );
+  /* Pyramid-like sawtooth on top */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 40%);
 }
 
 .fc-topnav-right {
@@ -124,7 +262,7 @@ body {
   height: 34px;
   border-radius: 8px;
   border: 1px solid var(--fc-border);
-  background: var(--fc-white);
+  background: var(--fc-glass);
   color: var(--fc-text-muted);
   text-decoration: none;
   font-size: 16px;
@@ -136,6 +274,7 @@ body {
   border-color: var(--fc-gold-border);
   color: var(--fc-gold);
   background: var(--fc-gold-bg);
+  box-shadow: 0 0 12px rgba(200,160,69,0.1);
 }
 
 .fc-nav-arrow.disabled {
@@ -160,7 +299,8 @@ body {
 
 .fc-nav-hub:hover {
   background: var(--fc-gold);
-  color: var(--fc-white);
+  color: var(--fc-void);
+  box-shadow: 0 0 16px rgba(200,160,69,0.25);
 }
 
 /* ---------- PAGE HEADER ---------- */
@@ -168,7 +308,29 @@ body {
   text-align: center;
   padding: 48px 20px 40px;
   border-bottom: 1px solid var(--fc-border);
-  background: var(--fc-cream);
+  background:
+    linear-gradient(180deg, rgba(15,15,30,0.9) 0%, var(--fc-void) 100%),
+    radial-gradient(ellipse at center top, rgba(200,160,69,0.06) 0%, transparent 60%);
+  position: relative;
+}
+
+/* Sacred geometry decorative line under header */
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--fc-gold-border),
+    var(--fc-gold),
+    var(--fc-gold-border),
+    transparent
+  );
 }
 
 .phase-tag {
@@ -183,6 +345,19 @@ body {
   padding: 6px 18px;
   border-radius: 20px;
   margin-bottom: 16px;
+  /* Hieroglyphic decorative border feel */
+  background-image:
+    linear-gradient(90deg, var(--fc-gold-bg), var(--fc-gold-bg)),
+    repeating-linear-gradient(
+      90deg,
+      var(--fc-gold-border) 0px,
+      var(--fc-gold-border) 2px,
+      transparent 2px,
+      transparent 8px
+    );
+  background-size: 100% 100%, 100% 1px;
+  background-position: 0 0, 0 100%;
+  background-repeat: no-repeat;
 }
 
 .day-number {
@@ -199,9 +374,10 @@ body {
   font-family: 'DM Serif Display', serif;
   font-size: clamp(30px, 6vw, 48px);
   font-weight: 400;
-  color: var(--fc-text);
+  color: var(--fc-gold-light);
   margin-bottom: 12px;
   line-height: 1.15;
+  text-shadow: 0 0 40px rgba(200,160,69,0.15);
 }
 
 .day-subtitle {
@@ -212,7 +388,7 @@ body {
   font-weight: 400;
 }
 
-/* ---------- DAY COMPLETION BADGE ---------- */
+/* ---------- DAY COMPLETION BADGE (Eye of Horus) ---------- */
 .fc-day-complete-badge {
   display: none;
   align-items: center;
@@ -220,14 +396,23 @@ body {
   gap: 8px;
   margin-top: 20px;
   padding: 10px 24px;
-  background: linear-gradient(135deg, var(--fc-gold), var(--fc-gold-light));
-  color: var(--fc-white);
+  background: linear-gradient(135deg, var(--fc-gold-dark), var(--fc-gold), var(--fc-gold-light));
+  color: var(--fc-void);
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
   border-radius: 24px;
   animation: badgePop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 30px rgba(200,160,69,0.3);
+  position: relative;
+}
+
+/* Eye of Horus decorative elements */
+.fc-day-complete-badge::before {
+  content: '\2625'; /* Ankh */
+  font-size: 16px;
+  margin-right: 4px;
 }
 
 .fc-day-complete-badge.visible {
@@ -264,17 +449,32 @@ body {
 .fc-completion-track {
   flex: 1;
   height: 8px;
-  background: var(--fc-cream);
+  background: rgba(200,160,69,0.08);
   border-radius: 4px;
   overflow: hidden;
 }
 
+/* Pyramid texture progress fill */
 .fc-completion-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--fc-gold), var(--fc-gold-light));
+  background: linear-gradient(90deg, var(--fc-gold-dark), var(--fc-gold), var(--fc-gold-light));
   border-radius: 4px;
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   width: 0%;
+  position: relative;
+}
+
+.fc-completion-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    120deg,
+    transparent 0px,
+    transparent 6px,
+    rgba(10,10,20,0.12) 6px,
+    rgba(10,10,20,0.12) 7px
+  );
 }
 
 .fc-completion-pct {
@@ -294,10 +494,11 @@ body {
 
 .section {
   padding: 44px 0;
-  border-bottom: 1px solid var(--fc-border);
+  border-bottom: none;
 }
 
 .section:last-child { border-bottom: none; }
+.section:last-child::after { display: none; }
 
 .section-icon {
   font-size: 28px;
@@ -330,7 +531,7 @@ body {
 }
 
 .section p strong {
-  color: var(--fc-text);
+  color: var(--fc-gold-light);
   font-weight: 600;
 }
 
@@ -339,7 +540,8 @@ body {
   font-family: 'DM Sans', sans-serif;
   font-size: 12px;
   color: var(--fc-text-light);
-  background: var(--fc-cream);
+  background: rgba(200,160,69,0.08);
+  border: 1px solid var(--fc-border);
   padding: 3px 10px;
   border-radius: 4px;
   margin-left: 8px;
@@ -347,16 +549,16 @@ body {
   vertical-align: middle;
 }
 
-/* ---------- SECTION COMPLETION CHECKBOXES ---------- */
+/* ---------- SECTION COMPLETION CHECKBOXES (Ankh) ---------- */
 .fc-section-check {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-top: 24px;
   padding: 14px 18px;
-  background: var(--fc-cream);
+  background: rgba(200,160,69,0.04);
   border-radius: var(--fc-radius-sm);
-  border: 1px solid transparent;
+  border: 1px solid var(--fc-border);
   cursor: pointer;
   transition: all 0.25s;
   user-select: none;
@@ -364,11 +566,21 @@ body {
 
 .fc-section-check:hover {
   border-color: var(--fc-gold-border);
+  background: rgba(200,160,69,0.06);
+  box-shadow: 0 0 12px rgba(200,160,69,0.05);
 }
 
 .fc-section-check.checked {
   background: var(--fc-gold-bg);
   border-color: var(--fc-gold-border);
+  box-shadow: 0 0 20px rgba(200,160,69,0.08);
+  animation: sectionGlow 0.6s ease-out;
+}
+
+@keyframes sectionGlow {
+  0% { box-shadow: 0 0 0px rgba(200,160,69,0); }
+  50% { box-shadow: 0 0 30px rgba(200,160,69,0.2); }
+  100% { box-shadow: 0 0 20px rgba(200,160,69,0.08); }
 }
 
 .fc-section-checkbox {
@@ -376,7 +588,7 @@ body {
   height: 24px;
   min-width: 24px;
   border-radius: 50%;
-  border: 2px solid rgba(184,148,60,0.35);
+  border: 2px solid rgba(200,160,69,0.35);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -385,15 +597,17 @@ body {
 }
 
 .fc-section-check.checked .fc-section-checkbox {
-  background: var(--fc-gold);
+  background: linear-gradient(135deg, var(--fc-gold-dark), var(--fc-gold));
   border-color: var(--fc-gold);
   transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(200,160,69,0.3);
 }
 
+/* Replace SVG checkmark with Ankh symbol */
 .fc-section-checkbox svg {
   width: 14px;
   height: 14px;
-  stroke: var(--fc-white);
+  stroke: var(--fc-void);
   stroke-width: 3;
   fill: none;
   opacity: 0;
@@ -402,8 +616,15 @@ body {
 }
 
 .fc-section-check.checked .fc-section-checkbox svg {
-  opacity: 1;
-  transform: scale(1);
+  opacity: 0; /* Hide SVG, show ankh instead */
+}
+
+.fc-section-check.checked .fc-section-checkbox::after {
+  content: '\2625'; /* Ankh ☥ */
+  position: absolute;
+  font-size: 14px;
+  color: var(--fc-void);
+  line-height: 1;
 }
 
 .fc-section-check-label {
@@ -414,7 +635,7 @@ body {
 }
 
 .fc-section-check.checked .fc-section-check-label {
-  color: var(--fc-gold-dark);
+  color: var(--fc-gold);
 }
 
 /* ---------- VIDEO EMBED ---------- */
@@ -425,8 +646,9 @@ body {
   margin: 24px 0;
   border-radius: var(--fc-radius);
   overflow: hidden;
-  background: var(--fc-cream);
+  background: var(--fc-surface);
   box-shadow: var(--fc-shadow);
+  border: 1px solid var(--fc-border);
 }
 
 .video-embed iframe {
@@ -443,12 +665,35 @@ body {
   border-radius: var(--fc-radius);
   padding: 28px;
   margin: 20px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle sacred corner decoration */
+.action-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 30px; height: 30px;
+  border-top: 2px solid var(--fc-gold-border);
+  border-left: 2px solid var(--fc-gold-border);
+  opacity: 0.5;
+}
+
+.action-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 30px; height: 30px;
+  border-bottom: 2px solid var(--fc-gold-border);
+  border-right: 2px solid var(--fc-gold-border);
+  opacity: 0.5;
 }
 
 .action-card h4 {
   font-family: 'DM Serif Display', serif;
   font-size: 18px;
-  color: var(--fc-gold-dark);
+  color: var(--fc-gold);
   margin-bottom: 10px;
   font-weight: 400;
 }
@@ -459,7 +704,7 @@ body {
   margin-bottom: 0;
 }
 
-/* ---------- TASK CHECKLIST (within Daily Action) ---------- */
+/* ---------- TASK CHECKLIST (Ankh checkmarks) ---------- */
 .checklist {
   list-style: none;
   padding: 0;
@@ -482,8 +727,8 @@ body {
   width: 22px;
   height: 22px;
   min-width: 22px;
-  border: 2px solid rgba(184,148,60,0.35);
-  border-radius: 6px;
+  border: 2px solid rgba(200,160,69,0.35);
+  border-radius: 50%;
   cursor: pointer;
   margin-top: 2px;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -495,33 +740,55 @@ body {
 
 .check-box:hover {
   border-color: var(--fc-gold);
+  box-shadow: 0 0 8px rgba(200,160,69,0.2);
 }
 
 .check-box.checked {
-  background: var(--fc-gold);
+  background: linear-gradient(135deg, var(--fc-gold-dark), var(--fc-gold));
   border-color: var(--fc-gold);
   transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(200,160,69,0.25);
 }
 
 .check-box.checked::after {
-  content: '\2713';
-  color: var(--fc-white);
-  font-size: 13px;
+  content: '\2625'; /* Ankh ☥ */
+  color: var(--fc-void);
+  font-size: 12px;
   font-weight: 700;
 }
 
-/* ---------- QUOTE BLOCK ---------- */
+/* ---------- QUOTE BLOCK (Hieroglyphic border) ---------- */
 .quote-block {
   border-left: 3px solid var(--fc-gold);
   padding: 20px 24px;
   margin: 24px 0;
   background: var(--fc-gold-bg);
   border-radius: 0 var(--fc-radius-sm) var(--fc-radius-sm) 0;
+  position: relative;
+}
+
+/* Top hieroglyphic border decoration */
+.quote-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 3px; right: 0;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--fc-gold-border) 0px,
+    var(--fc-gold-border) 3px,
+    transparent 3px,
+    transparent 9px,
+    var(--fc-gold-border) 9px,
+    var(--fc-gold-border) 15px,
+    transparent 15px,
+    transparent 21px
+  );
 }
 
 .quote-block p {
   font-style: italic;
-  color: var(--fc-gold-dark);
+  color: var(--fc-gold);
   font-size: 17px;
   margin-bottom: 0;
   line-height: 1.6;
@@ -529,11 +796,12 @@ body {
 
 /* ---------- REFLECTION CARD ---------- */
 .reflection-card {
-  background: var(--fc-cream);
+  background: var(--fc-surface);
   border-radius: var(--fc-radius);
   padding: 28px;
   margin: 20px 0;
   border: 1px solid var(--fc-border);
+  backdrop-filter: blur(8px);
 }
 
 .reflection-card ol {
@@ -547,20 +815,23 @@ body {
   font-style: italic;
 }
 
-/* ---------- BREATHWORK TIMER ---------- */
+/* ---------- BREATHWORK TIMER (Sacred Mandala) ---------- */
 .fc-breathwork {
   margin: 30px 0;
   padding: 0;
 }
 
 .fc-breathwork-card {
-  background: var(--fc-cream);
+  background:
+    radial-gradient(ellipse at center, rgba(200,160,69,0.04) 0%, transparent 60%),
+    var(--fc-surface);
   border: 1px solid var(--fc-border);
   border-radius: var(--fc-radius);
   padding: 36px 24px;
   text-align: center;
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(8px);
 }
 
 .fc-breathwork-title {
@@ -576,7 +847,7 @@ body {
   margin-bottom: 28px;
 }
 
-/* Breathing circle */
+/* Sacred Geometry Breathing Mandala */
 .fc-breath-ring-wrap {
   position: relative;
   width: 180px;
@@ -584,16 +855,56 @@ body {
   margin: 0 auto 24px;
 }
 
+/* Outer sacred geometry ring 1 */
+.fc-breath-ring-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 1px solid rgba(200,160,69,0.12);
+  animation: mandalaRotate 30s linear infinite;
+  /* Dashed for sacred geometry feel */
+  border-style: dashed;
+  border-width: 1px;
+}
+
+/* Outer sacred geometry ring 2 */
+.fc-breath-ring-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -24px;
+  border-radius: 50%;
+  border: 1px solid rgba(200,160,69,0.08);
+  animation: mandalaRotateReverse 45s linear infinite;
+  border-style: dotted;
+}
+
+@keyframes mandalaRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes mandalaRotateReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
 .fc-breath-ring {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 3px solid var(--fc-gold-border);
-  transition: transform 0.1s linear;
+  border: 2px solid rgba(200,160,69,0.2);
+  transition: all 0.3s;
+  /* Inner hexagonal geometry hint */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Ccircle cx='90' cy='90' r='60' fill='none' stroke='%23c8a045' stroke-width='0.5' opacity='0.08'/%3E%3Ccircle cx='90' cy='90' r='40' fill='none' stroke='%23c8a045' stroke-width='0.5' opacity='0.06'/%3E%3Ccircle cx='90' cy='90' r='80' fill='none' stroke='%23c8a045' stroke-width='0.3' opacity='0.05'/%3E%3C/svg%3E");
+  background-size: 100%;
+  background-position: center;
 }
 
 .fc-breath-ring.active {
   border-color: var(--fc-gold);
+  box-shadow: 0 0 20px rgba(200,160,69,0.15);
 }
 
 .fc-breath-circle {
@@ -603,11 +914,13 @@ body {
   width: 60px;
   height: 60px;
   transform: translate(-50%, -50%) scale(1);
-  background: linear-gradient(135deg, var(--fc-gold), var(--fc-gold-light));
+  background: linear-gradient(135deg, var(--fc-gold-dark), var(--fc-gold), var(--fc-gold-light));
   border-radius: 50%;
   opacity: 0.85;
   transition: transform 0.1s linear, opacity 0.3s;
-  box-shadow: 0 0 30px rgba(184,148,60,0.2);
+  box-shadow:
+    0 0 30px rgba(200,160,69,0.3),
+    0 0 60px rgba(200,160,69,0.1);
 }
 
 .fc-breath-circle.inhale {
@@ -639,8 +952,8 @@ body {
   transform: translate(-50%, -50%);
   font-size: 15px;
   font-weight: 600;
-  color: var(--fc-white);
-  text-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  color: var(--fc-void);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
   z-index: 2;
   pointer-events: none;
   white-space: nowrap;
@@ -652,6 +965,7 @@ body {
   color: var(--fc-gold);
   margin-bottom: 4px;
   min-height: 42px;
+  text-shadow: 0 0 20px rgba(200,160,69,0.2);
 }
 
 .fc-breath-phase {
@@ -694,18 +1008,18 @@ body {
 }
 
 .fc-breath-btn-start {
-  background: linear-gradient(135deg, var(--fc-gold), var(--fc-gold-dark));
-  color: var(--fc-white);
-  box-shadow: 0 4px 16px rgba(184,148,60,0.3);
+  background: linear-gradient(135deg, var(--fc-gold-dark), var(--fc-gold));
+  color: var(--fc-void);
+  box-shadow: 0 4px 16px rgba(200,160,69,0.25);
 }
 
 .fc-breath-btn-start:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgba(184,148,60,0.4);
+  box-shadow: 0 6px 24px rgba(200,160,69,0.35);
 }
 
 .fc-breath-btn-pause {
-  background: var(--fc-white);
+  background: var(--fc-glass);
   color: var(--fc-gold);
   border: 1px solid var(--fc-gold-border);
 }
@@ -724,16 +1038,17 @@ body {
   color: var(--fc-text-muted);
 }
 
-/* Completion pulse */
+/* Completion pulse — sacred glow */
 .fc-breathwork-card.complete {
   border-color: var(--fc-gold);
+  box-shadow: 0 0 30px rgba(200,160,69,0.1);
 }
 
 .fc-breathwork-card.complete::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(184,148,60,0.08), transparent 70%);
+  background: radial-gradient(circle at center, rgba(200,160,69,0.1), transparent 70%);
   pointer-events: none;
   animation: breathComplete 1s ease-out;
 }
@@ -767,8 +1082,8 @@ body {
   width: 26px;
   height: 26px;
   min-width: 26px;
-  background: var(--fc-gold);
-  color: var(--fc-white);
+  background: linear-gradient(135deg, var(--fc-gold-dark), var(--fc-gold));
+  color: var(--fc-void);
   font-size: 12px;
   font-weight: 700;
   border-radius: 50%;
@@ -787,7 +1102,7 @@ body {
   padding: 16px 18px;
   border: 1.5px solid var(--fc-border);
   border-radius: var(--fc-radius-sm);
-  background: var(--fc-white);
+  background: rgba(10,10,20,0.6);
   font-family: 'DM Sans', sans-serif;
   font-size: 15px;
   line-height: 1.7;
@@ -798,13 +1113,15 @@ body {
 }
 
 .fc-journal-textarea::placeholder {
-  color: #ccc5be;
+  color: var(--fc-text-light);
   font-style: italic;
+  opacity: 0.6;
 }
 
 .fc-journal-textarea:focus {
   border-color: var(--fc-gold);
-  box-shadow: 0 0 0 3px rgba(184,148,60,0.1);
+  box-shadow: 0 0 0 3px rgba(200,160,69,0.1), 0 0 20px rgba(200,160,69,0.06);
+  background: rgba(10,10,20,0.8);
 }
 
 .fc-journal-meta {
@@ -839,19 +1156,20 @@ body {
   bottom: 24px;
   left: 50%;
   transform: translateX(-50%) translateY(100px);
-  background: var(--fc-text);
-  color: var(--fc-white);
+  background: var(--fc-surface-solid);
+  color: var(--fc-gold);
   padding: 14px 24px;
   border-radius: 10px;
   font-size: 14px;
   font-weight: 500;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
   z-index: 2000;
   opacity: 0;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   max-width: 90vw;
   text-align: center;
+  border: 1px solid var(--fc-gold-border);
 }
 
 .fc-toast.show {
@@ -871,8 +1189,33 @@ body {
 .footer {
   text-align: center;
   padding: 40px 20px 80px;
-  border-top: 1px solid var(--fc-border);
-  background: var(--fc-cream);
+  border-top: none;
+  background: transparent;
+  position: relative;
+}
+
+/* Sacred geometry divider above footer */
+.footer::before {
+  content: '';
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  height: 1px;
+  margin: 0 auto 40px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 4px,
+      rgba(200,160,69,0.2) 4px,
+      rgba(200,160,69,0.2) 6px,
+      transparent 6px,
+      transparent 14px,
+      rgba(200,160,69,0.3) 14px,
+      rgba(200,160,69,0.3) 18px,
+      transparent 18px,
+      transparent 22px
+    );
 }
 
 .footer p {
@@ -888,7 +1231,8 @@ body {
 }
 
 .footer a:hover {
-  color: var(--fc-gold-dark);
+  color: var(--fc-gold-light);
+  text-shadow: 0 0 8px rgba(200,160,69,0.3);
 }
 
 .nav-bottom {
@@ -903,8 +1247,8 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: linear-gradient(135deg, var(--fc-gold), var(--fc-gold-dark));
-  color: var(--fc-white);
+  background: linear-gradient(135deg, var(--fc-gold-dark), var(--fc-gold));
+  color: var(--fc-void);
   padding: 13px 28px;
   border-radius: var(--fc-radius-sm);
   text-decoration: none;
@@ -917,21 +1261,23 @@ body {
 
 .nav-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(184,148,60,0.3);
+  box-shadow: 0 4px 20px rgba(200,160,69,0.3);
+  background: linear-gradient(135deg, var(--fc-gold), var(--fc-gold-light));
 }
 
 .nav-btn.secondary {
-  background: var(--fc-white);
+  background: var(--fc-glass);
   border: 1px solid var(--fc-gold-border);
   color: var(--fc-gold);
 }
 
 .nav-btn.secondary:hover {
   background: var(--fc-gold-bg);
+  box-shadow: 0 0 16px rgba(200,160,69,0.1);
 }
 
 .nav-btn.locked {
-  opacity: 0.5;
+  opacity: 0.35;
   cursor: not-allowed;
 }
 
@@ -940,7 +1286,7 @@ body {
   box-shadow: none;
 }
 
-/* ---------- TOMORROW TEASER ---------- */
+/* ---------- TOMORROW TEASER (Sealed Chamber) ---------- */
 .section[style*="text-align:center"] p,
 .tomorrow-teaser p {
   color: var(--fc-text-light);
@@ -964,8 +1310,9 @@ body {
 }
 
 .btn-play:hover {
-  background: rgba(184,148,60,0.12);
+  background: rgba(200,160,69,0.12);
   border-color: var(--fc-gold);
+  box-shadow: 0 0 12px rgba(200,160,69,0.15);
 }
 
 /* ---------- RESPONSIVE ---------- */
@@ -989,12 +1336,19 @@ body {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+  body::before { animation: none; opacity: 0.8; }
+  body::after { animation: none; }
+  .fc-breath-ring-wrap::before,
+  .fc-breath-ring-wrap::after { animation: none; }
 }
 
-/* Override any inline dark-theme colors that exist in old day pages */
+/* ---------- INLINE STYLE OVERRIDES FOR DARK THEME ---------- */
+/* Override old day pages that have inline light-theme colors */
 .section[style] p { color: var(--fc-text-muted) !important; }
 .section[style] p[style*="color:#fff"],
-.section[style] p[style*="color: #fff"] { color: var(--fc-text) !important; }
+.section[style] p[style*="color: #fff"],
+.section[style] p[style*="color:#2c2c2c"],
+.section[style] p[style*="color: #2c2c2c"] { color: var(--fc-text) !important; }
 .section[style] p[style*="color:#888"],
 .section[style] p[style*="color: #888"],
 .section[style] p[style*="color:#666"],
@@ -1002,9 +1356,30 @@ body {
 .section[style] p[style*="color:#555"],
 .section[style] p[style*="color: #555"],
 .section[style] p[style*="color:#444"],
-.section[style] p[style*="color: #444"] { color: var(--fc-text-light) !important; }
+.section[style] p[style*="color: #444"],
+.section[style] p[style*="color:#999590"],
+.section[style] p[style*="color: #999590"] { color: var(--fc-text-light) !important; }
 
-/* ---------- AUDIO PLAYER (replaces video-embed for MP3s) ---------- */
+/* Override inline font-weight and family for dark theme readability */
+.section[style] p[style*="font-weight:600"],
+.section[style] p[style*="font-weight: 600"] { color: var(--fc-gold-light) !important; }
+
+.section[style] p[style*="font-family"] { font-family: 'DM Serif Display', serif !important; }
+
+/* Fix footer inline styles */
+.footer p[style*="color:#999590"],
+.footer p[style*="color: #999590"],
+.footer p[style*="color:#444"],
+.footer p[style*="color: #444"] { color: var(--fc-text-light) !important; }
+
+/* Ensure header text colors */
+.section[style*="text-align:center"] h2,
+.section[style] h2 {
+  color: var(--fc-gold-light) !important;
+  font-family: 'DM Serif Display', serif !important;
+}
+
+/* ---------- AUDIO PLAYER ---------- */
 .video-embed:has(audio) {
   position: relative;
   padding-bottom: 0;
@@ -1021,7 +1396,6 @@ body {
   border-radius: var(--fc-radius-sm);
 }
 
-/* ---------- AUDIO PLAYER (clean, no video frame) ---------- */
 .audio-player {
   background: var(--fc-gold-bg);
   border: 1px solid var(--fc-gold-border);
@@ -1032,4 +1406,184 @@ body {
 .audio-player audio {
   width: 100%;
   border-radius: var(--fc-radius-sm);
+}
+
+/* ---------- SELECTION HIGHLIGHT ---------- */
+::selection {
+  background: rgba(200,160,69,0.3);
+  color: var(--fc-text);
+}
+
+/* ---------- SCROLLBAR STYLING ---------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--fc-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(200,160,69,0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200,160,69,0.35);
+}
+
+/* ---------- AYA VISIONS — SACRED GEOMETRY LAYERS ---------- */
+/* DMT/Ayahuasca-inspired: rotating mandalas, breathing Flower of Life,
+   Metatron's Cube, concentric expanding rings, golden dust particles */
+
+.sacred-dragon {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* === LAYER 1: Giant breathing Flower of Life mandala (center) === */
+.aya-ocean {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 600px; height: 600px;
+  transform: translate(-50%, -50%);
+  opacity: 0.06;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Ccircle cx='150' cy='150' r='70' fill='none' stroke='%23c8a045' stroke-width='0.8'/%3E%3Ccircle cx='150' cy='80' r='70' fill='none' stroke='%23c8a045' stroke-width='0.6'/%3E%3Ccircle cx='150' cy='220' r='70' fill='none' stroke='%23c8a045' stroke-width='0.6'/%3E%3Ccircle cx='89.4' cy='115' r='70' fill='none' stroke='%23c8a045' stroke-width='0.6'/%3E%3Ccircle cx='210.6' cy='115' r='70' fill='none' stroke='%23c8a045' stroke-width='0.6'/%3E%3Ccircle cx='89.4' cy='185' r='70' fill='none' stroke='%23c8a045' stroke-width='0.6'/%3E%3Ccircle cx='210.6' cy='185' r='70' fill='none' stroke='%23c8a045' stroke-width='0.6'/%3E%3Ccircle cx='150' cy='150' r='35' fill='none' stroke='%23e8c869' stroke-width='0.5'/%3E%3Ccircle cx='150' cy='150' r='140' fill='none' stroke='%23c8a045' stroke-width='0.3'/%3E%3C/svg%3E") no-repeat center;
+  background-size: contain;
+  animation: mandalaBreathe 8s ease-in-out infinite, mandalaRotate 120s linear infinite;
+}
+
+/* === LAYER 2: Metatron's Cube — counter-rotating === */
+.aya-surface {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 500px; height: 500px;
+  transform: translate(-50%, -50%);
+  opacity: 0.04;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cpolygon points='150,20 280,95 280,205 150,280 20,205 20,95' fill='none' stroke='%23c8a045' stroke-width='0.6'/%3E%3Cpolygon points='150,60 240,107.5 240,192.5 150,240 60,192.5 60,107.5' fill='none' stroke='%23e8c869' stroke-width='0.5'/%3E%3Cline x1='150' y1='20' x2='150' y2='280' stroke='%23c8a045' stroke-width='0.3'/%3E%3Cline x1='20' y1='95' x2='280' y2='205' stroke='%23c8a045' stroke-width='0.3'/%3E%3Cline x1='280' y1='95' x2='20' y2='205' stroke='%23c8a045' stroke-width='0.3'/%3E%3Cline x1='20' y1='95' x2='280' y2='95' stroke='%23c8a045' stroke-width='0.2'/%3E%3Cline x1='20' y1='205' x2='280' y2='205' stroke='%23c8a045' stroke-width='0.2'/%3E%3Ccircle cx='150' cy='150' r='100' fill='none' stroke='%23c8a045' stroke-width='0.3'/%3E%3C/svg%3E") no-repeat center;
+  background-size: contain;
+  animation: metatronSpin 90s linear infinite reverse, mandalaBreathe 12s ease-in-out 2s infinite;
+}
+
+/* === LAYER 3: Expanding concentric rings === */
+.serpent-seg {
+  position: absolute;
+  top: 50%; left: 50%;
+  border-radius: 50%;
+  border: 1px solid var(--fc-gold);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.serpent-seg:nth-child(1) { animation: ringExpand 6s ease-out infinite; }
+.serpent-seg:nth-child(2) { animation: ringExpand 6s ease-out 1s infinite; }
+.serpent-seg:nth-child(3) { animation: ringExpand 6s ease-out 2s infinite; }
+.serpent-seg:nth-child(4) { animation: ringExpand 6s ease-out 3s infinite; }
+.serpent-seg:nth-child(5) { animation: ringExpand 8s ease-out 0.5s infinite; border-style: dashed; }
+.serpent-seg:nth-child(6) { animation: ringExpand 8s ease-out 2.5s infinite; border-style: dashed; }
+.serpent-seg:nth-child(7) { animation: ringExpand 8s ease-out 4.5s infinite; border-style: dashed; }
+
+/* === LAYER 4: Floating golden dust particles === */
+.dragon-flow {
+  position: absolute;
+  width: 3px; height: 3px;
+  background: var(--fc-gold);
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 6px rgba(200,160,69,0.4);
+}
+
+.dragon-flow:nth-child(8) { top: 20%; left: 15%; animation: dustFloat 10s ease-in-out infinite; }
+.dragon-flow:nth-child(9) { top: 60%; left: 75%; animation: dustFloat 12s ease-in-out 3s infinite; width: 2px; height: 2px; }
+.dragon-flow:nth-child(10) { top: 40%; left: 45%; animation: dustFloat 8s ease-in-out 6s infinite; width: 4px; height: 4px; box-shadow: 0 0 10px rgba(200,160,69,0.5); }
+
+/* === LAYER 5: All-seeing eye — center glow === */
+.dragon-eye {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,200,105,0.3), rgba(200,160,69,0.1) 50%, transparent 70%);
+  box-shadow: 0 0 60px rgba(200,160,69,0.15), 0 0 120px rgba(200,160,69,0.05);
+  animation: eyeBreathe 4s ease-in-out infinite;
+}
+
+.dragon-eye::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 8px; height: 8px;
+  transform: translate(-50%, -50%);
+  background: var(--fc-gold-light);
+  border-radius: 50%;
+  box-shadow: 0 0 20px var(--fc-gold);
+}
+
+/* === LAYER 6: Corner pyramids === */
+.dragon-tri {
+  position: absolute;
+  width: 0; height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 35px solid rgba(200,160,69,0.04);
+  filter: drop-shadow(0 0 10px rgba(200,160,69,0.08));
+}
+
+.dragon-tri:nth-of-type(1) { top: 8%; left: 8%; animation: pyramidFloat 15s ease-in-out infinite; }
+.dragon-tri:nth-of-type(2) { bottom: 12%; right: 10%; animation: pyramidFloat 18s ease-in-out 5s infinite; transform: rotate(180deg); }
+.dragon-tri:nth-of-type(3) { top: 50%; right: 5%; animation: pyramidFloat 20s ease-in-out 10s infinite; transform: rotate(90deg); }
+
+/* === KEYFRAMES === */
+
+@keyframes mandalaBreathe {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.06; }
+  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.1; }
+}
+
+@keyframes mandalaRotate {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes metatronSpin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes ringExpand {
+  0% { width: 20px; height: 20px; opacity: 0.2; }
+  70% { opacity: 0.06; }
+  100% { width: 500px; height: 500px; opacity: 0; }
+}
+
+@keyframes dustFloat {
+  0% { opacity: 0; transform: translateY(0) translateX(0); }
+  20% { opacity: 0.6; }
+  50% { opacity: 0.8; transform: translateY(-40px) translateX(20px); }
+  80% { opacity: 0.4; }
+  100% { opacity: 0; transform: translateY(-80px) translateX(-10px); }
+}
+
+@keyframes eyeBreathe {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; box-shadow: 0 0 60px rgba(200,160,69,0.15); }
+  50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; box-shadow: 0 0 100px rgba(200,160,69,0.25), 0 0 200px rgba(200,160,69,0.08); }
+}
+
+@keyframes pyramidFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.04; }
+  50% { transform: translateY(-15px) rotate(5deg); opacity: 0.08; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aya-ocean, .aya-surface, .serpent-seg, .dragon-flow, .dragon-eye, .dragon-tri { animation: none !important; opacity: 0.04 !important; }
+}
+
+@media (max-width: 600px) {
+  .aya-ocean { width: 350px; height: 350px; }
+  .aya-surface { width: 300px; height: 300px; }
+  .dragon-tri { display: none; }
 }
