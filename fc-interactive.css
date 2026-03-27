@@ -41,6 +41,7 @@
 /* ---------- FLOWER OF LIFE BACKGROUND PATTERN ---------- */
 body {
   font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
   background: var(--fc-void);
   color: var(--fc-text);
   line-height: 1.75;
@@ -188,7 +189,7 @@ body::after {
 
 .fc-topnav-day {
   font-family: 'DM Serif Display', serif;
-  font-size: 15px;
+  font-size: 18px;
   color: var(--fc-text);
   white-space: nowrap;
 }
@@ -197,7 +198,7 @@ body::after {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--fc-gold);
   background: var(--fc-gold-bg);
@@ -265,7 +266,7 @@ body::after {
   background: var(--fc-glass);
   color: var(--fc-text-muted);
   text-decoration: none;
-  font-size: 16px;
+  font-size: 19px;
   transition: all 0.2s;
   cursor: pointer;
 }
@@ -293,7 +294,7 @@ body::after {
   background: var(--fc-gold-bg);
   color: var(--fc-gold);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 19px;
   transition: all 0.2s;
 }
 
@@ -335,7 +336,7 @@ body::after {
 
 .phase-tag {
   display: inline-block;
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -362,7 +363,7 @@ body::after {
 
 .day-number {
   font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
+  font-size: 18px;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--fc-text-light);
@@ -381,7 +382,7 @@ body::after {
 }
 
 .day-subtitle {
-  font-size: 16px;
+  font-size: 19px;
   color: var(--fc-text-muted);
   max-width: 500px;
   margin: 0 auto;
@@ -398,7 +399,7 @@ body::after {
   padding: 10px 24px;
   background: linear-gradient(135deg, var(--fc-gold-dark), var(--fc-gold), var(--fc-gold-light));
   color: var(--fc-void);
-  font-size: 14px;
+  font-size: 19px;
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -411,7 +412,7 @@ body::after {
 /* Eye of Horus decorative elements */
 .fc-day-complete-badge::before {
   content: '\2625'; /* Ankh */
-  font-size: 16px;
+  font-size: 19px;
   margin-right: 4px;
 }
 
@@ -438,7 +439,7 @@ body::after {
 }
 
 .fc-completion-label {
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--fc-text-light);
   text-transform: uppercase;
@@ -478,7 +479,7 @@ body::after {
 }
 
 .fc-completion-pct {
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--fc-gold);
   min-width: 36px;
@@ -506,7 +507,7 @@ body::after {
 }
 
 .section-label {
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -524,7 +525,7 @@ body::after {
 }
 
 .section p {
-  font-size: 16px;
+  font-size: 19px;
   color: var(--fc-text-muted);
   margin-bottom: 16px;
   font-weight: 400;
@@ -538,7 +539,7 @@ body::after {
 .duration-tag {
   display: inline-block;
   font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
+  font-size: 18px;
   color: var(--fc-text-light);
   background: rgba(200,160,69,0.08);
   border: 1px solid var(--fc-border);
@@ -622,13 +623,13 @@ body::after {
 .fc-section-check.checked .fc-section-checkbox::after {
   content: '\2625'; /* Ankh ☥ */
   position: absolute;
-  font-size: 14px;
+  font-size: 19px;
   color: var(--fc-void);
   line-height: 1;
 }
 
 .fc-section-check-label {
-  font-size: 14px;
+  font-size: 19px;
   font-weight: 500;
   color: var(--fc-text-muted);
   transition: color 0.2s;
@@ -700,7 +701,7 @@ body::after {
 
 .action-card p {
   color: var(--fc-text-muted);
-  font-size: 15px;
+  font-size: 18px;
   margin-bottom: 0;
 }
 
@@ -717,7 +718,7 @@ body::after {
   gap: 14px;
   padding: 14px 0;
   border-bottom: 1px solid var(--fc-border);
-  font-size: 15px;
+  font-size: 18px;
   color: var(--fc-text-muted);
 }
 
@@ -753,7 +754,7 @@ body::after {
 .check-box.checked::after {
   content: '\2625'; /* Ankh ☥ */
   color: var(--fc-void);
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 700;
 }
 
@@ -789,7 +790,7 @@ body::after {
 .quote-block p {
   font-style: italic;
   color: var(--fc-gold);
-  font-size: 17px;
+  font-size: 20px;
   margin-bottom: 0;
   line-height: 1.6;
 }
@@ -811,7 +812,7 @@ body::after {
 
 .reflection-card ol li {
   padding: 8px 0;
-  font-size: 16px;
+  font-size: 19px;
   font-style: italic;
 }
 
@@ -842,7 +843,7 @@ body::after {
 }
 
 .fc-breathwork-subtitle {
-  font-size: 13px;
+  font-size: 18px;
   color: var(--fc-text-light);
   margin-bottom: 28px;
 }
@@ -950,7 +951,7 @@ body::after {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--fc-void);
   text-shadow: 0 1px 4px rgba(0,0,0,0.3);
@@ -969,7 +970,7 @@ body::after {
 }
 
 .fc-breath-phase {
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--fc-text-light);
   text-transform: uppercase;
@@ -978,7 +979,7 @@ body::after {
 }
 
 .fc-breath-cycles {
-  font-size: 12px;
+  font-size: 18px;
   color: var(--fc-text-light);
   margin-top: 8px;
 }
@@ -1001,7 +1002,7 @@ body::after {
   border: none;
   border-radius: 28px;
   font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
+  font-size: 19px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.25s;
@@ -1084,13 +1085,13 @@ body::after {
   min-width: 26px;
   background: linear-gradient(135deg, var(--fc-gold-dark), var(--fc-gold));
   color: var(--fc-void);
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 700;
   border-radius: 50%;
 }
 
 .fc-journal-question {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--fc-text);
   font-style: italic;
@@ -1104,7 +1105,7 @@ body::after {
   border-radius: var(--fc-radius-sm);
   background: rgba(10,10,20,0.6);
   font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.7;
   color: var(--fc-text);
   resize: vertical;
@@ -1134,7 +1135,7 @@ body::after {
 }
 
 .fc-journal-saved {
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--fc-gold);
   opacity: 0;
@@ -1146,7 +1147,7 @@ body::after {
 }
 
 .fc-journal-charcount {
-  font-size: 11px;
+  font-size: 15px;
   color: var(--fc-text-light);
 }
 
@@ -1160,7 +1161,7 @@ body::after {
   color: var(--fc-gold);
   padding: 14px 24px;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 19px;
   font-weight: 500;
   box-shadow: 0 8px 32px rgba(0,0,0,0.5);
   z-index: 2000;
@@ -1220,7 +1221,7 @@ body::after {
 
 .footer p {
   color: var(--fc-text-light);
-  font-size: 13px;
+  font-size: 18px;
   margin-bottom: 8px;
 }
 
@@ -1252,7 +1253,7 @@ body::after {
   padding: 13px 28px;
   border-radius: var(--fc-radius-sm);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 19px;
   font-weight: 600;
   transition: all 0.25s;
   border: none;
@@ -1303,7 +1304,7 @@ body::after {
   padding: 12px 24px;
   border-radius: var(--fc-radius-sm);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 19px;
   font-weight: 500;
   transition: all 0.2s;
   margin-top: 10px;
@@ -1324,9 +1325,9 @@ body::after {
   .fc-breathwork-card { padding: 28px 16px; }
   .fc-breath-ring-wrap { width: 150px; height: 150px; }
   .fc-topnav-inner { padding: 8px 12px; }
-  .fc-topnav-day { font-size: 13px; }
+  .fc-topnav-day { font-size: 18px; }
   .fc-topnav-center { max-width: 120px; }
-  .fc-nav-arrow, .fc-nav-hub { width: 30px; height: 30px; font-size: 13px; }
+  .fc-nav-arrow, .fc-nav-hub { width: 30px; height: 30px; font-size: 18px; }
   .fc-completion-bar { padding: 16px 16px 0; }
 }
 
